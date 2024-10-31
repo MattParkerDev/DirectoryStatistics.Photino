@@ -10,6 +10,19 @@ public static class TreeMapper
 
 		List<Folder> subFolders = [];
 
+		var files = GetFiles(directoryInfo);
+		if (files.Count is not 0)
+		{
+			var pseudoFolder = new Folder
+			{
+				Path = folder.Path,
+				Name = "<Files>",
+				IsPseudoFolder = true,
+				Files = files
+			};
+			subFolders.Add(pseudoFolder);
+		}
+
 		var subFolderInfos = directoryInfo.EnumerateDirectories().ToList();
 		foreach (var subFolderInfo in subFolderInfos)
 		{
@@ -22,5 +35,17 @@ public static class TreeMapper
 			subFolders.Add(subFolder);
 		}
 		return subFolders;
+	}
+
+	public static List<TreeMapFile> GetFiles(DirectoryInfo directoryInfo)
+	{
+		var fileInfos = directoryInfo.EnumerateFiles().ToList();
+		var files = fileInfos.Select(s => new TreeMapFile
+		{
+			Path = s.FullName,
+			Name = s.Name,
+			Size = s.Length
+		}).ToList();
+		return files;
 	}
 }
