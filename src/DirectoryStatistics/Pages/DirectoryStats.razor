@@ -2,15 +2,17 @@
 @using DirectoryStatistics.Models
 @using DirectoryStatistics.Services
 
-<MudStack Spacing="0">
-	<MudText Typo="Typo.h5">Directory Statistics</MudText>
-	<MudText Typo="Typo.body2">List all of the files and folders on your computer and sort by size</MudText>
-</MudStack>
+<MudStack>
+	<MudStack Spacing="0">
+		<MudText Typo="Typo.h5">Directory Statistics</MudText>
+		<MudText Typo="Typo.body2">List all of the files and folders on your computer and sort by size</MudText>
+	</MudStack>
 
 @if (_running)
 {
 	<MudProgressCircular Indeterminate="true" />
 }
+</MudStack>
 
 @code {
 	private Folder _rootFolder = null!;
