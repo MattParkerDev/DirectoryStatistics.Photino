@@ -6,6 +6,7 @@ public class Folder
 	public string Name { get; set; } = null!;
 	public List<Folder> Folders { get; set; } = [];
 	public List<TreeMapFile> Files { get; set; } = [];
+	public bool IsPseudoFolder { get; set; }
 }
 
 public class TreeMapFile
