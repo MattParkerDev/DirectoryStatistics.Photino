@@ -1,0 +1,25 @@
+﻿@page "/fileexplorer"
+
+@foreach(var folder in _foldersInDirectory)
+{
+	<MudText>@folder</MudText>
+}
+@foreach(var file in _filesInDirectory)
+{
+	<MudText>@file</MudText>
+}
+
+@code {
+	private string _currentPath = "C:\\";
+
+	private List<string> _filesInDirectory = [];
+	private List<string> _foldersInDirectory = [];
+
+	protected override void OnInitialized()
+	{
+		var directory = new DirectoryInfo(_currentPath);
+		_filesInDirectory = directory.EnumerateFiles().Select(s => s.Name).ToList();
+		_foldersInDirectory = directory.EnumerateDirectories().Select(s => s.Name).ToList();
+	}
+
+}
