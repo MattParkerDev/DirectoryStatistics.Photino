@@ -2,11 +2,17 @@
 
 @foreach(var folder in _foldersInDirectory)
 {
-	<MudText>@folder</MudText>
+	<MudStack Spacing="2" Row="true">
+		<MudIcon Icon="@Icons.Material.Filled.Folder" Color="Color.Warning" />
+		<MudText>@folder</MudText>
+	</MudStack>
 }
 @foreach(var file in _filesInDirectory)
 {
-	<MudText>@file</MudText>
+	<MudStack Spacing="2" Row="true">
+		<MudIcon Icon="@Icons.Material.Filled.InsertDriveFile" Color="Color.Primary" />
+		<MudText>@file</MudText>
+	</MudStack>
 }
 
 @code {
