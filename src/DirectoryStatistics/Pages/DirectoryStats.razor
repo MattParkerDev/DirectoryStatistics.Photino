@@ -3,6 +3,8 @@
 @using DirectoryStatistics.Models
 @using DirectoryStatistics.Services
 
+@inject AppState AppState
+
 <MudStack>
 	<MudStack Spacing="0">
 		<MudText Typo="Typo.h5">Directory Statistics</MudText>
@@ -24,6 +26,12 @@
 
 	protected override async Task OnInitializedAsync()
 	{
+		if (AppState.RootFolder is not null)
+		{
+			_rootFolder = AppState.RootFolder;
+			return;
+		}
+
 		var rootPath = Path.GetPathRoot(Environment.CurrentDirectory)!;
 		_rootFolder = new Folder
 		{
@@ -33,6 +41,7 @@
 		_running = true;
 		_stopwatch.Start();
 		_rootFolder.Folders = await Task.Run(() => _rootFolder.GetSubFolders());
+		AppState.RootFolder = _rootFolder;
 		_stopwatch.Stop();
 		_running = false;
 	}
