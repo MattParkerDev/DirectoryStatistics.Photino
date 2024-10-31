@@ -23,7 +23,15 @@ public static class TreeMapper
 			subFolders.Add(pseudoFolder);
 		}
 
-		var subFolderInfos = directoryInfo.EnumerateDirectories().ToList();
+		List<DirectoryInfo> subFolderInfos;
+		try
+		{
+			subFolderInfos = directoryInfo.EnumerateDirectories().ToList();
+		}
+		catch (UnauthorizedAccessException)
+		{
+			return subFolders;
+		}
 		foreach (var subFolderInfo in subFolderInfos)
 		{
 			var subFolder = new Folder
@@ -39,7 +47,16 @@ public static class TreeMapper
 
 	public static List<TreeMapFile> GetFiles(DirectoryInfo directoryInfo)
 	{
-		var fileInfos = directoryInfo.EnumerateFiles().ToList();
+		List<FileInfo> fileInfos;
+		try
+		{
+			fileInfos = directoryInfo.EnumerateFiles().ToList();
+		}
+		catch (UnauthorizedAccessException)
+		{
+			return [];
+		}
+
 		var files = fileInfos.Select(s => new TreeMapFile
 		{
 			Path = s.FullName,
