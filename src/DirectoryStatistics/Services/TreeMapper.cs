@@ -1,4 +1,5 @@
-﻿using DirectoryStatistics.Models;
+﻿using System.Collections.Concurrent;
+using DirectoryStatistics.Models;
 
 namespace DirectoryStatistics.Services;
 
@@ -8,7 +9,7 @@ public static class TreeMapper
 	{
 		var directoryInfo = new DirectoryInfo(folder.Path);
 
-		List<Folder> subFolders = [];
+		ConcurrentBag<Folder> subFolders = [];
 
 		var files = GetFiles(directoryInfo);
 		if (files.Count is not 0)
@@ -30,9 +31,9 @@ public static class TreeMapper
 		}
 		catch (UnauthorizedAccessException)
 		{
-			return subFolders;
+			return subFolders.ToList();
 		}
-		foreach (var subFolderInfo in subFolderInfos)
+		Parallel.ForEach(subFolderInfos, subFolderInfo =>
 		{
 			var subFolder = new Folder
 			{
@@ -41,8 +42,8 @@ public static class TreeMapper
 			};
 			subFolder.Folders = subFolder.GetSubFolders();
 			subFolders.Add(subFolder);
-		}
-		return subFolders;
+		});
+		return subFolders.ToList();
 	}
 
 	public static List<TreeMapFile> GetFiles(DirectoryInfo directoryInfo)
