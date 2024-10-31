@@ -2,8 +2,19 @@
 @using DirectoryStatistics.Models
 @using DirectoryStatistics.Services
 
+<MudStack Spacing="0">
+	<MudText Typo="Typo.h5">Directory Statistics</MudText>
+	<MudText Typo="Typo.body2">List all of the files and folders on your computer and sort by size</MudText>
+</MudStack>
+
+@if (_running)
+{
+	<MudProgressCircular Indeterminate="true" />
+}
+
 @code {
 	private Folder _rootFolder = null!;
+	private bool _running = false;
 
 	protected override async Task OnInitializedAsync()
 	{
@@ -13,6 +24,8 @@
 			Path = rootPath,
 			Name = rootPath
 		};
+		_running = true;
 		_rootFolder.Folders = await Task.Run(() => _rootFolder.GetSubFolders());
+		_running = false;
 	}
 }
