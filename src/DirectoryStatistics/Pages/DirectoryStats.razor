@@ -1,5 +1,18 @@
 ﻿@page "/directorystatistics"
+@using DirectoryStatistics.Models
+@using DirectoryStatistics.Services
 
 @code {
+	private Folder _rootFolder = null!;
 
+	protected override async Task OnInitializedAsync()
+	{
+		var rootPath = Path.GetPathRoot(Environment.CurrentDirectory)!;
+		_rootFolder = new Folder
+		{
+			Path = rootPath,
+			Name = rootPath
+		};
+		_rootFolder.Folders = _rootFolder.GetSubFolders();
+	}
 }
