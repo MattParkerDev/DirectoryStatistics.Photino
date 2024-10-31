@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F4ED837F-888A-4D01-BCED-C360B9CE0865}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{124E1491-6ED8-492E-9B39-C534364929ED}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		Directory.Build.props = Directory.Build.props
+		global.json = global.json
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectoryStatistics", "src\DirectoryStatistics\DirectoryStatistics.csproj", "{3031F1D0-EA4B-4A75-9D83-A6D5234F6648}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3031F1D0-EA4B-4A75-9D83-A6D5234F6648}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3031F1D0-EA4B-4A75-9D83-A6D5234F6648}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3031F1D0-EA4B-4A75-9D83-A6D5234F6648}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3031F1D0-EA4B-4A75-9D83-A6D5234F6648}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3031F1D0-EA4B-4A75-9D83-A6D5234F6648} = {F4ED837F-888A-4D01-BCED-C360B9CE0865}
+	EndGlobalSection
+EndGlobal
