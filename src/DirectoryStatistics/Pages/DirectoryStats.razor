@@ -1,4 +1,5 @@
 ﻿@page "/directorystatistics"
+@using System.Diagnostics
 @using DirectoryStatistics.Models
 @using DirectoryStatistics.Services
 
@@ -8,15 +9,18 @@
 		<MudText Typo="Typo.body2">List all of the files and folders on your computer and sort by size</MudText>
 	</MudStack>
 
-@if (_running)
-{
-	<MudProgressCircular Indeterminate="true" />
-}
+	@if (_running)
+	{
+		<MudProgressCircular Indeterminate="true" />
+		return;
+	}
+	<MudText>Treemap completed in @_stopwatch.ElapsedMilliseconds ms</MudText>
 </MudStack>
 
 @code {
 	private Folder _rootFolder = null!;
 	private bool _running = false;
+	private Stopwatch _stopwatch = new();
 
 	protected override async Task OnInitializedAsync()
 	{
@@ -27,7 +31,9 @@
 			Name = rootPath
 		};
 		_running = true;
+		_stopwatch.Start();
 		_rootFolder.Folders = await Task.Run(() => _rootFolder.GetSubFolders());
+		_stopwatch.Stop();
 		_running = false;
 	}
 }
