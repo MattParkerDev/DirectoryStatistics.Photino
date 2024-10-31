@@ -17,6 +17,21 @@
 		return;
 	}
 	<MudText>Treemap completed in @_stopwatch.ElapsedMilliseconds ms</MudText>
+
+	<MudTable Items="[_rootFolder]" Elevation="2" Dense="true">
+		<HeaderContent>
+			<MudTh>Name</MudTh>
+			<MudTh>Size</MudTh>
+			<MudTh>%</MudTh>
+			<MudTh>%</MudTh>
+		</HeaderContent>
+		<RowTemplate>
+			<MudTd>@context.Name</MudTd>
+			<MudTd>@context.TotalFolderSize</MudTd>
+			<MudTd></MudTd>
+			<MudTd>@context.GetPercentageOfRootFolderSize(_rootFolder.TotalFolderSize).ToString("N1")</MudTd>
+		</RowTemplate>
+	</MudTable>
 </MudStack>
 
 @code {
