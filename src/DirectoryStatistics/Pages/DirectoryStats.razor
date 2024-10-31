@@ -13,6 +13,6 @@
 			Path = rootPath,
 			Name = rootPath
 		};
-		_rootFolder.Folders = _rootFolder.GetSubFolders();
+		_rootFolder.Folders = await Task.Run(() => _rootFolder.GetSubFolders());
 	}
 }
