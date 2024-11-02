@@ -31,6 +31,16 @@
 			<MudTd><MudProgressLinear Value="@context.TotalFolderSize" Max="@_rootFolder.TotalFolderSize" Color="Color.Primary" /></MudTd>
 			<MudTd>@context.GetPercentageOfRootFolderSize(_rootFolder.TotalFolderSize).ToString("N1")</MudTd>
 		</RowTemplate>
+		<ChildRowContent>
+			<MudTable Items="@context.Folders" Dense="true" Elevation="0">
+				<RowTemplate Context="innerContext">
+					<MudTd>@innerContext.Name</MudTd>
+					<MudTd>@innerContext.TotalFolderSizeFormatted</MudTd>
+					<MudTd><MudProgressLinear Value="@innerContext.TotalFolderSize" Max="@_rootFolder.TotalFolderSize" Color="Color.Primary" /></MudTd>
+					<MudTd>@innerContext.GetPercentageOfRootFolderSize(_rootFolder.TotalFolderSize).ToString("N1")</MudTd>
+				</RowTemplate>
+			</MudTable>
+		</ChildRowContent>
 	</MudTable>
 </MudStack>
 
