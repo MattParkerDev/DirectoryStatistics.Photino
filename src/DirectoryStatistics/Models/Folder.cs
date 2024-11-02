@@ -12,6 +12,9 @@ public class Folder
 	public bool IsPseudoFolder { get; set; }
 
 	[JsonIgnore]
+	public bool Expanded { get; set; }
+
+	[JsonIgnore]
 	public long TotalFolderSize => _totalFolderSize ??= Files.Sum(s => s.Size) + Folders.Sum(c => c.TotalFolderSize);
 	private long? _totalFolderSize;
 
