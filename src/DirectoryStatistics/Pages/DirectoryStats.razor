@@ -19,6 +19,12 @@
 	<MudText>Treemap completed in @_stopwatch.ElapsedMilliseconds ms</MudText>
 
 	<MudTable Items="[_rootFolder]" Elevation="2" Dense="true">
+		<ColGroup>
+			<col/>
+			<col style="width: 10%"/>
+			<col style="width: 20%"/>
+			<col style="width: 8%"/>
+		</ColGroup>
 		<HeaderContent>
 			<MudTh>Name</MudTh>
 			<MudTh>Size</MudTh>
@@ -34,6 +40,12 @@
 		<ChildRowContent>
 			<td colspan="4">
 				<MudTable Items="@context.Folders" Dense="true" Elevation="0">
+					<ColGroup>
+						<col/>
+						<col style="width: 10%"/>
+						<col style="width: 20%"/>
+						<col style="width: 8%"/>
+					</ColGroup>
 					<RowTemplate Context="innerContext">
 						<MudTd>@innerContext.Name</MudTd>
 						<MudTd>@innerContext.TotalFolderSizeFormatted</MudTd>
