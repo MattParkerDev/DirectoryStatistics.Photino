@@ -24,13 +24,13 @@
 		</ColGroup>
 		<HeaderContent>
 			<MudTh>Name</MudTh>
-			<MudTh>Size</MudTh>
+			<MudTh Style="text-align:right">Size</MudTh>
 			<MudTh>%</MudTh>
 			<MudTh>%</MudTh>
 		</HeaderContent>
 		<RowTemplate>
 			<MudTd>@context.Name</MudTd>
-			<MudTd>@context.TotalFolderSizeFormatted</MudTd>
+			<MudTd Style="text-align:right">@context.TotalFolderSizeFormatted</MudTd>
 			<MudTd><MudProgressLinear Value="@context.TotalFolderSize" Max="@_rootFolder.TotalFolderSize" Color="Color.Primary" /></MudTd>
 			<MudTd>@context.GetPercentageOfRootFolderSize(_rootFolder.TotalFolderSize).ToString("N1")</MudTd>
 		</RowTemplate>
@@ -42,7 +42,7 @@
 					</ColGroup>
 					<RowTemplate Context="innerContext">
 						<MudTd>@innerContext.Name</MudTd>
-						<MudTd>@innerContext.TotalFolderSizeFormatted</MudTd>
+						<MudTd Style="text-align:right">@innerContext.TotalFolderSizeFormatted</MudTd>
 						<MudTd><MudProgressLinear Value="@innerContext.TotalFolderSize" Max="@_rootFolder.TotalFolderSize" Color="Color.Primary"/></MudTd>
 						<MudTd>@innerContext.GetPercentageOfRootFolderSize(_rootFolder.TotalFolderSize).ToString("N1")</MudTd>
 					</RowTemplate>
