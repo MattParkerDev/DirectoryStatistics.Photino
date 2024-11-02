@@ -7,6 +7,9 @@ public class Folder
 	public List<Folder> Folders { get; set; } = [];
 	public List<TreeMapFile> Files { get; set; } = [];
 	public bool IsPseudoFolder { get; set; }
+
+	public long TotalFolderSize => Files.Sum(s => s.Size) + Folders.Sum(c => c.TotalFolderSize);
+	public decimal GetPercentageOfRootFolderSize(long totalSizeBytes) => ((decimal) TotalFolderSize / totalSizeBytes) * 100;
 }
 
 public class TreeMapFile
