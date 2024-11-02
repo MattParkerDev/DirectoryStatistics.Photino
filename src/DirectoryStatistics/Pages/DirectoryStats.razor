@@ -89,6 +89,26 @@
 			 </MudTable>
 		 </text>;
 
+	private RenderFragment GetFileTable(Folder folder) =>
+		@<text>
+			 <MudTable Items="@folder.Files.OrderByDescending(s => s.Size)" Elevation="0" Dense="true">
+				 <ColGroup>
+					 @GetTableColumnFormatting()
+				 </ColGroup>
+				 <RowTemplate>
+					 <MudTd>
+						 <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="1">
+							 <MudIcon Color="Color.Dark" Size="Size.Small" Class="mr-1" Icon="@Icons.Material.Filled.Square"/>
+							 @context.Name
+						 </MudStack>
+					 </MudTd>
+					 <MudTd Style="text-align:right">@context.SizeFormatted</MudTd>
+					 <MudTd><MudProgressLinear Value="@context.Size" Max="@_rootFolder.TotalFolderSize" Color="Color.Primary"/></MudTd>
+					 <MudTd></MudTd>
+				 </RowTemplate>
+			 </MudTable>
+		 </text>;
+
 	protected override async Task OnInitializedAsync()
 	{
 		if (AppState.RootFolder is not null)
