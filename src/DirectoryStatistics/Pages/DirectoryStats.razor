@@ -29,7 +29,12 @@
 			<MudTh>%</MudTh>
 		</HeaderContent>
 		<RowTemplate>
-			<MudTd>@context.Name</MudTd>
+			<MudTd>
+				<MudStack Row="true">
+					<MudIcon Icon="@Icons.Material.Filled.Folder" Color="Color.Warning" Size="Size.Small" />
+					@context.Name
+				</MudStack>
+			</MudTd>
 			<MudTd Style="text-align:right">@context.TotalFolderSizeFormatted</MudTd>
 			<MudTd><MudProgressLinear Value="@context.TotalFolderSize" Max="@_rootFolder.TotalFolderSize" Color="Color.Primary" /></MudTd>
 			<MudTd>@context.GetPercentageOfRootFolderSize(_rootFolder.TotalFolderSize).ToString("N1")</MudTd>
@@ -41,7 +46,12 @@
 						@GetTableColumnFormatting()
 					</ColGroup>
 					<RowTemplate Context="innerContext">
-						<MudTd>@innerContext.Name</MudTd>
+						<MudTd>
+							<MudStack Row="true">
+								<MudIcon Icon="@Icons.Material.Filled.Folder" Color="Color.Warning" Size="Size.Small" />
+								@innerContext.Name
+							</MudStack>
+						</MudTd>
 						<MudTd Style="text-align:right">@innerContext.TotalFolderSizeFormatted</MudTd>
 						<MudTd><MudProgressLinear Value="@innerContext.TotalFolderSize" Max="@_rootFolder.TotalFolderSize" Color="Color.Primary"/></MudTd>
 						<MudTd>@innerContext.GetPercentageOfRootFolderSize(_rootFolder.TotalFolderSize).ToString("N1")</MudTd>
