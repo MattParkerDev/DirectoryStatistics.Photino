@@ -82,7 +82,14 @@
 					 @if (context.Expanded)
 					 {
 						 <td colspan="4">
-							 @GetFolderTable(context)
+							 @if (context.IsPseudoFolder)
+							 {
+								 @GetFileTable(context)
+							 }
+							 else
+							 {
+								 @GetFolderTable(context)
+							 }
 						 </td>
 					 }
 				 </ChildRowContent>
