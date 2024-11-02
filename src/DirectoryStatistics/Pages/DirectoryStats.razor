@@ -28,7 +28,7 @@
 		<RowTemplate>
 			<MudTd>@context.Name</MudTd>
 			<MudTd>@context.TotalFolderSize</MudTd>
-			<MudTd></MudTd>
+			<MudTd><MudProgressLinear Value="@context.TotalFolderSize" Max="@_rootFolder.TotalFolderSize" Color="Color.Primary" /></MudTd>
 			<MudTd>@context.GetPercentageOfRootFolderSize(_rootFolder.TotalFolderSize).ToString("N1")</MudTd>
 		</RowTemplate>
 	</MudTable>
