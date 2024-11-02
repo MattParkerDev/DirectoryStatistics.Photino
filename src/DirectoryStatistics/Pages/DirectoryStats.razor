@@ -48,7 +48,7 @@
 					<RowTemplate Context="innerContext">
 						<MudTd>
 							<MudStack Row="true">
-								<MudIcon Icon="@Icons.Material.Filled.Folder" Color="Color.Warning" Size="Size.Small" />
+								<MudIcon Icon="@(innerContext.IsPseudoFolder ? Icons.Material.Filled.Square : Icons.Material.Filled.Folder)" Color="@(innerContext.IsPseudoFolder ? Color.Dark : Color.Warning)" Size="Size.Small" />
 								@innerContext.Name
 							</MudStack>
 						</MudTd>
