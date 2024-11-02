@@ -12,14 +12,19 @@ public class Folder
 	public bool IsPseudoFolder { get; set; }
 
 	[JsonIgnore]
-	public long TotalFolderSize => Files.Sum(s => s.Size) + Folders.Sum(c => c.TotalFolderSize);
-	public decimal GetPercentageOfRootFolderSize(long totalSizeBytes) => ((decimal) TotalFolderSize / totalSizeBytes) * 100;
+	public long TotalFolderSize => _totalFolderSize ??= Files.Sum(s => s.Size) + Folders.Sum(c => c.TotalFolderSize);
+	private long? _totalFolderSize;
+
+	public decimal GetPercentageOfRootFolderSize(long totalSizeBytes) => _percentageOfRootFolderSize ??= ((decimal) TotalFolderSize / totalSizeBytes) * 100;
+	private decimal? _percentageOfRootFolderSize;
 
 	[JsonIgnore]
-	public string TotalFolderSizeFormatted => $"{ByteSize.LargestWholeNumberBinaryValue:N1} {ByteSize.LargestWholeNumberBinarySymbol}";
+	public string TotalFolderSizeFormatted => _totalFolderSizeFormatted ??= $"{ByteSize.LargestWholeNumberBinaryValue:N1} {ByteSize.LargestWholeNumberBinarySymbol}";
+	private string? _totalFolderSizeFormatted;
 
 	[JsonIgnore]
-	private ByteSize ByteSize => ByteSize.FromBytes(TotalFolderSize);
+	private ByteSize ByteSize => _byteSize ??= ByteSize.FromBytes(TotalFolderSize);
+	private ByteSize? _byteSize;
 }
 
 public class TreeMapFile
