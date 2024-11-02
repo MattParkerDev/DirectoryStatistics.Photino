@@ -19,7 +19,8 @@ public static class TreeMapper
 				Path = folder.Path,
 				Name = "<Files>",
 				IsPseudoFolder = true,
-				Files = files
+				Files = files,
+				Depth = folder.Depth + 1
 			};
 			subFolders.Add(pseudoFolder);
 		}
@@ -39,6 +40,7 @@ public static class TreeMapper
 			{
 				Path = subFolderInfo.FullName,
 				Name = subFolderInfo.Name,
+				Depth = folder.Depth + 1
 			};
 			subFolder.Folders = subFolder.GetSubFolders();
 			subFolders.Add(subFolder);
