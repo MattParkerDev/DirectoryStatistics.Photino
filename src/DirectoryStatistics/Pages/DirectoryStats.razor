@@ -68,7 +68,7 @@
 				 </ColGroup>
 				 <RowTemplate>
 					 <MudTd>
-						 <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="1">
+						 <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="1" Style="@($"margin-left: {folder.Depth * 29}px")">
 							 <MudToggleIconButton @bind-Toggled="@context.Expanded" Size="Size.Small" Icon="@Icons.Material.Outlined.ArrowRight" ToggledIcon="@Icons.Material.Outlined.ArrowDropDown" />
 							 <MudIcon Class="mr-1" Icon="@(context.IsPseudoFolder ? Icons.Material.Filled.Square : Icons.Material.Filled.Folder)" Color="@(context.IsPseudoFolder ? Color.Dark : Color.Warning)" Size="Size.Small"/>
 							 @context.Name
@@ -104,7 +104,8 @@
 				 </ColGroup>
 				 <RowTemplate>
 					 <MudTd>
-						 <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="1">
+						 <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="1" Style="@($"margin-left: {(folder.Depth) * 29}px")">
+							 <MudToggleIconButton Class="invisible" Size="Size.Small" Icon="@Icons.Material.Outlined.ArrowRight" />
 							 <MudIcon Color="Color.Dark" Size="Size.Small" Class="mr-1" Icon="@Icons.Material.Filled.Square"/>
 							 @context.Name
 						 </MudStack>

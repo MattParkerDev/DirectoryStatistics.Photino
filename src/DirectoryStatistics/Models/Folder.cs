@@ -10,6 +10,7 @@ public class Folder
 	public List<Folder> Folders { get; set; } = [];
 	public List<TreeMapFile> Files { get; set; } = [];
 	public bool IsPseudoFolder { get; set; }
+	public int Depth { get; set; }
 
 	[JsonIgnore]
 	public bool Expanded { get; set; }
