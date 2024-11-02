@@ -41,22 +41,7 @@
 		</RowTemplate>
 		<ChildRowContent>
 			<td colspan="4">
-				<MudTable Items="@context.Folders.OrderByDescending(s => s.TotalFolderSize)" Dense="true" Elevation="0">
-					<ColGroup>
-						@GetTableColumnFormatting()
-					</ColGroup>
-					<RowTemplate Context="innerContext">
-						<MudTd>
-							<MudStack Row="true">
-								<MudIcon Icon="@(innerContext.IsPseudoFolder ? Icons.Material.Filled.Square : Icons.Material.Filled.Folder)" Color="@(innerContext.IsPseudoFolder ? Color.Dark : Color.Warning)" Size="Size.Small" />
-								@innerContext.Name
-							</MudStack>
-						</MudTd>
-						<MudTd Style="text-align:right">@innerContext.TotalFolderSizeFormatted</MudTd>
-						<MudTd><MudProgressLinear Value="@innerContext.TotalFolderSize" Max="@_rootFolder.TotalFolderSize" Color="Color.Primary"/></MudTd>
-						<MudTd>@innerContext.GetPercentageOfRootFolderSize(_rootFolder.TotalFolderSize).ToString("N1")</MudTd>
-					</RowTemplate>
-				</MudTable>
+				@GetFolderTable(context)
 			</td>
 		</ChildRowContent>
 	</MudTable>
@@ -73,6 +58,26 @@
 			 <col style="width: 10%"/>
 			 <col style="width: 20%"/>
 			 <col style="width: 8%"/>
+		 </text>;
+
+	private RenderFragment GetFolderTable(Folder folder) =>
+		@<text>
+			 <MudTable Items="@folder.Folders.OrderByDescending(s => s.TotalFolderSize)" Dense="true" Elevation="0">
+				 <ColGroup>
+					 @GetTableColumnFormatting()
+				 </ColGroup>
+				 <RowTemplate>
+					 <MudTd>
+						 <MudStack Row="true">
+							 <MudIcon Icon="@(context.IsPseudoFolder ? Icons.Material.Filled.Square : Icons.Material.Filled.Folder)" Color="@(context.IsPseudoFolder ? Color.Dark : Color.Warning)" Size="Size.Small"/>
+							 @context.Name
+						 </MudStack>
+					 </MudTd>
+					 <MudTd Style="text-align:right">@context.TotalFolderSizeFormatted</MudTd>
+					 <MudTd><MudProgressLinear Value="@context.TotalFolderSize" Max="@_rootFolder.TotalFolderSize" Color="Color.Primary"/></MudTd>
+					 <MudTd>@context.GetPercentageOfRootFolderSize(_rootFolder.TotalFolderSize).ToString("N1")</MudTd>
+				 </RowTemplate>
+			 </MudTable>
 		 </text>;
 
 	protected override async Task OnInitializedAsync()
