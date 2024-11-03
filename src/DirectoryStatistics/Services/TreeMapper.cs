@@ -28,7 +28,7 @@ public static class TreeMapper
 		List<DirectoryInfo> subFolderInfos;
 		try
 		{
-			subFolderInfos = directoryInfo.EnumerateDirectories().ToList();
+			subFolderInfos = directoryInfo.EnumerateDirectories("*", new EnumerationOptions { IgnoreInaccessible = false, AttributesToSkip = FileAttributes.ReparsePoint}).ToList();
 		}
 		catch (UnauthorizedAccessException)
 		{
