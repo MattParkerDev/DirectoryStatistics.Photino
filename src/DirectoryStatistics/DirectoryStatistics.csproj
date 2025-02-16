@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType> <!-- Doesn't actually mean Windows Exe, 'Exe' = console entrypoint, 'WinExe' = application entry point -->
-		<TargetFramework>net8.0</TargetFramework>
+		<TargetFramework>net9.0</TargetFramework>
 		<ApplicationIcon>favicon.ico</ApplicationIcon>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
@@ -18,8 +18,8 @@
 
 	<ItemGroup>
 		<PackageReference Include="ByteSize" Version="2.1.2" />
-		<PackageReference Include="MudBlazor" Version="7.15.0" />
-		<PackageReference Include="Photino.Blazor" Version="3.2.0" />
+		<PackageReference Include="MudBlazor" Version="8.2.0" />
+		<PackageReference Include="Photino.Blazor" Version="4.0.13" />
 	</ItemGroup>
 
 	<ItemGroup>
